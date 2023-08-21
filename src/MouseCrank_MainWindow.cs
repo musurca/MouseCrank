@@ -4,12 +4,18 @@ using System.Media;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using MouseCrank.src.crank;
+using MouseCrank.src.hooks;
+using MouseCrank.src.settings;
+using MouseCrank.src.sound;
+using MouseCrank.src.steelbeasts;
 
 /*
  * MouseCrank main window UI
  */
 
-namespace MouseCrank {
+namespace MouseCrank
+{
     public partial class MouseCrank_MainWindow : Form {
         private static Dictionary<string, Keys> keyMaps = new Dictionary<string, Keys> {
             { "A", Keys.A },

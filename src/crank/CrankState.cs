@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MouseCrank {
-    internal class CrankState {
+namespace MouseCrank.src.crank
+{
+    internal class CrankState
+    {
         private readonly object _crankLock = new object();
         private bool _crankActivated;
         private float _sensitivity_x;
@@ -13,69 +15,89 @@ namespace MouseCrank {
         private float _curve_x;
         private float _curve_y;
 
-        public CrankState() {
+        public CrankState()
+        {
             _crankActivated = false;
         }
 
-        public void SetSensitivityX(int sens) {
-            lock(_crankLock) {
+        public void SetSensitivityX(int sens)
+        {
+            lock (_crankLock)
+            {
                 _sensitivity_x = sens / 100.0f;
             }
         }
 
-        public float GetSensitivityX() {
+        public float GetSensitivityX()
+        {
             return _sensitivity_x;
         }
 
-        public void SetSensitivityY(int sens) {
-            lock (_crankLock) {
+        public void SetSensitivityY(int sens)
+        {
+            lock (_crankLock)
+            {
                 _sensitivity_y = sens / 100.0f;
             }
         }
 
-        public float GetSensitivityY() {
+        public float GetSensitivityY()
+        {
             return _sensitivity_y;
         }
 
-        public void SetCurveX(int sens) {
-            lock (_crankLock) {
+        public void SetCurveX(int sens)
+        {
+            lock (_crankLock)
+            {
                 _curve_x = sens / 100.0f;
             }
         }
 
-        public float GetCurveX() {
+        public float GetCurveX()
+        {
             return _curve_x;
         }
 
-        public void SetCurveY(int sens) {
-            lock (_crankLock) {
+        public void SetCurveY(int sens)
+        {
+            lock (_crankLock)
+            {
                 _curve_y = sens / 100.0f;
             }
         }
 
-        public float GetCurveY() {
+        public float GetCurveY()
+        {
             return _curve_y;
         }
 
-        public void ToggleCrank() {
-            lock (_crankLock) {
+        public void ToggleCrank()
+        {
+            lock (_crankLock)
+            {
                 _crankActivated = !_crankActivated;
             }
         }
 
-        public void DeactivateCrank() {
-            lock (_crankLock) {
+        public void DeactivateCrank()
+        {
+            lock (_crankLock)
+            {
                 _crankActivated = false;
             }
         }
 
-        public void ActivateCrank() {
-            lock (_crankLock) {
+        public void ActivateCrank()
+        {
+            lock (_crankLock)
+            {
                 _crankActivated = true;
             }
         }
 
-        public bool IsCrankActivated() {
+        public bool IsCrankActivated()
+        {
             return _crankActivated;
         }
     }

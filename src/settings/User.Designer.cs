@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MouseCrank {
+namespace MouseCrank.src.settings {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
