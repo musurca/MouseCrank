@@ -6,9 +6,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
     <Platforms>x64</Platforms>
     <ApplicationIcon>logo.ico</ApplicationIcon>
+    <Description>Mouse input for hand-cranked turrets in Steel Beasts Pro PE</Description>
+    <PackageIcon>mousecrank-icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/musurca/MouseCrank</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="graphics\mousecrank-icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="installer.nsi">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -43,6 +51,10 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
     <None Update="sounds\crank_off.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -15,8 +15,7 @@ using System.Threading.Tasks;
 
 namespace MouseCrank.src.sound
 {
-    internal class SoundBank
-    {
+    internal class SoundBank {
         [DllImport("winmm.dll")]
         public static extern int waveOutGetVolume(nint hwo, out uint dwVolume);
 
@@ -30,8 +29,7 @@ namespace MouseCrank.src.sound
         private SoundPlayer _sndCrankOn;
         private SoundPlayer _sndCrankOff;
 
-        public SoundBank()
-        {
+        public SoundBank() {
             try {
                 _sndCrankOn = new SoundPlayer(FILE_CRANK_ON);
                 _sndCrankOn.LoadAsync();
@@ -51,21 +49,18 @@ namespace MouseCrank.src.sound
             _volume = GetVolume();
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             _sndCrankOn?.Dispose();
             _sndCrankOff?.Dispose();
         }
 
-        private double GetVolume()
-        {
+        private double GetVolume() {
             uint CurrVol = 0;
             waveOutGetVolume(nint.Zero, out CurrVol);
             return (ushort)(CurrVol & 0x0000ffff) / (double)ushort.MaxValue;
         }
 
-        public void SetVolume(double vol)
-        {
+        public void SetVolume(double vol) {
             _volume = vol;
             double lnVol = vol > 0.0 ? Math.Pow(10, -1.0 + _volume) : 0.0;
 
@@ -74,31 +69,21 @@ namespace MouseCrank.src.sound
             waveOutSetVolume(nint.Zero, NewVolumeAllChannels);
         }
 
-        public void PlayCrankOn()
-        {
-            if (_volume > 0.0)
-            {
-                try
-                {
+        public void PlayCrankOn() {
+            if (_volume > 0.0) {
+                try {
                     _sndCrankOn?.Play();
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     // Silently fail
                 }
             }
         }
 
-        public void PlayCrankOff()
-        {
-            if (_volume > 0.0)
-            {
-                try
-                {
+        public void PlayCrankOff() {
+            if (_volume > 0.0) {
+                try {
                     _sndCrankOff?.Play();
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     // Silently fail
                 }
             }

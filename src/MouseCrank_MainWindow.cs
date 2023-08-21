@@ -320,11 +320,16 @@ namespace MouseCrank.src {
 
         // RESTORE FROM TRAY/WINDOW NORMAL IF ANOTHER INSTANCE ATTEMPTED
         protected override void WndProc(ref Message m) {
-            if (m.Msg == Program.WM_SHOWME) {
+            if (m.Msg == SingleInstanceEnforcer.NOTIFY_MSG) {
                 if (MouseCrank_TrayIcon.Visible && User.Default.MinimizeToTray) {
+                    // Restore from tray
                     RestoreFromTray();
                 } else if (WindowState == FormWindowState.Minimized) {
+                    // De-minimize
                     WindowState = FormWindowState.Normal;
+                } else {
+                    // Bring the window to the foreground
+                    Activate();
                 }
             }
 

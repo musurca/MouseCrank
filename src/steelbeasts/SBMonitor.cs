@@ -19,16 +19,14 @@ using System.Threading.Tasks;
 namespace MouseCrank.src.steelbeasts
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct WinRect
-    {
+    internal struct WinRect {
         public int Left;
         public int Top;
         public int Right;
         public int Bottom;
     }
 
-    internal class SBState
-    {
+    internal class SBState {
         public bool Running { get; set; }
         public bool InForeground { get; set; }
 
@@ -37,8 +35,7 @@ namespace MouseCrank.src.steelbeasts
 
         public WinRect Rect { get; set; }
 
-        public SBState()
-        {
+        public SBState() {
             Running = false;
             InForeground = false;
             DPI_X = 96;
@@ -47,10 +44,8 @@ namespace MouseCrank.src.steelbeasts
         }
     }
 
-    internal class SBMonitor
-    {
-        public enum DpiType
-        {
+    internal class SBMonitor {
+        public enum DpiType {
             Effective = 0,
             Angular = 1,
             Raw = 2,
@@ -73,29 +68,24 @@ namespace MouseCrank.src.steelbeasts
         private static Point WND_POINT = new Point(0, 0);
 
         // https://stackoverflow.com/questions/29438430/how-to-get-dpi-scale-for-all-screens
-        private static void GetDpi(Point pnt, DpiType dpiType, out uint dpiX, out uint dpiY)
-        {
+        private static void GetDpi(Point pnt, DpiType dpiType, out uint dpiX, out uint dpiY) {
             var mon = MonitorFromPoint(pnt, 2/*MONITOR_DEFAULTTONEAREST*/);
             GetDpiForMonitor(mon, dpiType, out dpiX, out dpiY);
         }
 
-        public static void CheckState(SBState state)
-        {
+        public static void CheckState(SBState state) {
             WinRect rect = state.Rect;
 
             Process p = null;
             // Check for both PE & PE Server
-            foreach (string appName in APP_NAMES)
-            {
+            foreach (string appName in APP_NAMES) {
                 p = Process.GetProcessesByName(appName).FirstOrDefault();
-                if (p != null)
-                {
+                if (p != null) {
                     break;
                 }
             }
 
-            if (p == null)
-            {
+            if (p == null) {
                 // No matching process found, Steel Beasts is not running
                 state.Running = false;
                 state.InForeground = false;
@@ -105,9 +95,7 @@ namespace MouseCrank.src.steelbeasts
                 rect.Right = 0;
                 rect.Bottom = 0;
                 state.Rect = rect;
-            }
-            else
-            {
+            } else {
                 // Steel Beasts is running
                 state.Running = true;
                 nint mwnd = p.MainWindowHandle;
@@ -123,10 +111,8 @@ namespace MouseCrank.src.steelbeasts
                 // Detect DPI
                 WND_POINT.X = rect.Left + 1;
                 WND_POINT.Y = rect.Top + 1;
-                foreach (Screen screen in Screen.AllScreens)
-                {
-                    if (screen.Bounds.Contains(WND_POINT))
-                    {
+                foreach (Screen screen in Screen.AllScreens) {
+                    if (screen.Bounds.Contains(WND_POINT)) {
                         uint d_x, d_y;
                         GetDpi(WND_POINT, DpiType.Angular, out d_x, out d_y);
                         state.DPI_X = d_x;
