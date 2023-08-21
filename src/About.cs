@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MouseCrank.src;
 
-namespace MouseCrank
+namespace MouseCrank.src
 {
     public partial class About : Form {
         public About() {

@@ -1,4 +1,4 @@
-﻿namespace MouseCrank {
+﻿namespace MouseCrank.src {
     partial class About {
         /// <summary>
         /// Required designer variable.

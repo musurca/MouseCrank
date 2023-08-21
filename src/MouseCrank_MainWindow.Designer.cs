@@ -1,4 +1,4 @@
-﻿namespace MouseCrank {
+﻿namespace MouseCrank.src {
     partial class MouseCrank_MainWindow {
         /// <summary>
         ///  Required designer variable.

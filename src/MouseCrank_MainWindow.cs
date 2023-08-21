@@ -14,7 +14,7 @@ using MouseCrank.src.steelbeasts;
  * MouseCrank main window UI
  */
 
-namespace MouseCrank
+namespace MouseCrank.src
 {
     public partial class MouseCrank_MainWindow : Form {
         private static Dictionary<string, Keys> keyMaps = new Dictionary<string, Keys> {
@@ -299,6 +299,10 @@ namespace MouseCrank
 
         // RETURN FROM TRAY
         private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
+            RestoreFromTray();
+        }
+
+        private void RestoreFromTray() {
             Show();
             this.WindowState = FormWindowState.Normal;
             MouseCrank_TrayIcon.Visible = false;
@@ -313,6 +317,19 @@ namespace MouseCrank
                     MouseCrank_TrayIcon.ShowBalloonTip(1000);
                 }
             }
+        }
+
+        // RESTORE FROM TRAY/WINDOW NORMAL IF ANOTHER INSTANCE ATTEMPTED
+        protected override void WndProc(ref Message m) {
+            if (m.Msg == Program.WM_SHOWME) {
+                if(MouseCrank_TrayIcon.Visible && User.Default.MinimizeToTray) {
+                    RestoreFromTray();
+                } else if (WindowState == FormWindowState.Minimized) {
+                    WindowState = FormWindowState.Normal;
+                }
+            }
+
+            base.WndProc(ref m);
         }
 
         // CHANGE SOUND VOLUME
