@@ -1,6 +1,8 @@
 # MouseCrank for Steel Beasts Pro PE
 <p align="center"><img src="https://raw.githubusercontent.com/musurca/MouseCrank/master/graphics/screenshots/composite_sm.png" /></p>
 
+**DOWNLOAD THE LATEST RELEASE (v0.1.0): [INSTALLER](https://github.com/musurca/MouseCrank/releases/download/v0.1.0_installer/Install_MouseCrank_v0.1.0.exe) | [ZIP](https://github.com/musurca/MouseCrank/releases/download/v0.1.0_zip/MouseCrank_v0.1.0.zip)**
+
 Do you love driving tanks with hand-cranked turrets, but hate mashing arrow keys? Well, *mash no more*! It's **MouseCrank**, a free utility that generates arrow presses from mouse input to drive manually-traversed turrets.
 
 ## Features
