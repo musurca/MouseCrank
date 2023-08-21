@@ -14,8 +14,7 @@ using MouseCrank.src.steelbeasts;
  * MouseCrank main window UI
  */
 
-namespace MouseCrank.src
-{
+namespace MouseCrank.src {
     public partial class MouseCrank_MainWindow : Form {
         private static Dictionary<string, Keys> keyMaps = new Dictionary<string, Keys> {
             { "A", Keys.A },
@@ -322,7 +321,7 @@ namespace MouseCrank.src
         // RESTORE FROM TRAY/WINDOW NORMAL IF ANOTHER INSTANCE ATTEMPTED
         protected override void WndProc(ref Message m) {
             if (m.Msg == Program.WM_SHOWME) {
-                if(MouseCrank_TrayIcon.Visible && User.Default.MinimizeToTray) {
+                if (MouseCrank_TrayIcon.Visible && User.Default.MinimizeToTray) {
                     RestoreFromTray();
                 } else if (WindowState == FormWindowState.Minimized) {
                     WindowState = FormWindowState.Normal;

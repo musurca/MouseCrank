@@ -32,10 +32,21 @@ namespace MouseCrank.src.sound
 
         public SoundBank()
         {
-            _sndCrankOn = new SoundPlayer(FILE_CRANK_ON);
-            _sndCrankOn.LoadAsync();
-            _sndCrankOff = new SoundPlayer(FILE_CRANK_OFF);
-            _sndCrankOff.LoadAsync();
+            try {
+                _sndCrankOn = new SoundPlayer(FILE_CRANK_ON);
+                _sndCrankOn.LoadAsync();
+            } catch {
+                _sndCrankOn?.Dispose();
+                _sndCrankOn = null;
+            }
+
+            try { 
+                _sndCrankOff = new SoundPlayer(FILE_CRANK_OFF);
+                _sndCrankOff.LoadAsync();
+            } catch {
+                _sndCrankOff?.Dispose();
+                _sndCrankOff = null;
+            }
 
             _volume = GetVolume();
         }
@@ -69,7 +80,7 @@ namespace MouseCrank.src.sound
             {
                 try
                 {
-                    _sndCrankOn.Play();
+                    _sndCrankOn?.Play();
                 }
                 catch (Exception e)
                 {
@@ -84,7 +95,7 @@ namespace MouseCrank.src.sound
             {
                 try
                 {
-                    _sndCrankOff.Play();
+                    _sndCrankOff?.Play();
                 }
                 catch (Exception e)
                 {
