@@ -20,7 +20,7 @@ using MouseCrank.src.steelbeasts;
 
 namespace MouseCrank.src.crank
 {
-    internal class MouseToKeys {
+    internal class CrankThread {
         private static readonly int SLOW_UPDATE_SLICE = 1000 / 10;
         private static readonly int UPDATE_SLICE = 1000 / 60;
         private static readonly float MAX_TAP_RATE = 30.0f; // taps/sec
@@ -34,6 +34,28 @@ namespace MouseCrank.src.crank
             "{UP}", "{DOWN}"
         };
 
+        private Thread _crankThread;
+        private CrankState _crankState;
+
+        public CrankThread(CrankState crankState) {
+            _crankState = crankState;
+
+            _crankThread = new(
+                () => Run(_crankState)
+            );
+        }
+
+        public void Start() {
+            _crankThread.Start();
+        }
+
+        public void Stop() {
+            // Signal the thread to stop
+            _crankState.KillCrank();
+            // Wait for the thread to complete
+            _crankThread.Join();
+        }
+
         private static int signToKey(float sign) {
             return sign < 0 ? 0 : 1;
         }
@@ -45,11 +67,7 @@ namespace MouseCrank.src.crank
             return pix / scale;
         }
 
-        public static void Run(
-            CancellationToken token, 
-            AutoResetEvent sleepEvent, 
-            CrankState state
-        ) {
+        public static void Run(CrankState crankState) {
             float horizTaps = 0.0f;
             float vertTaps = 0.0f;
             int timeToNextTap_Horiz = 0;
@@ -66,16 +84,21 @@ namespace MouseCrank.src.crank
             int center_x = 0, center_y = 0;
             int cursor_x = 0, cursor_y = 0;
 
-            while (!token.IsCancellationRequested) {
+            while (crankState.IsRunning()) {
                 SBMonitor.CheckState(sbState);
                 WinRect rect = sbState.Rect;
 
                 // Put thread to sleep if the crank is deactivated, or
                 // Steel Beasts is not running
-                if (!state.IsCrankActivated() || !sbState.Running) {
-                    sleepEvent.Reset();
-                    state.DeactivateCrank();
-                    sleepEvent.WaitOne();
+                if (!crankState.IsCrankActivated() || !sbState.Running) {
+                    crankState.DeactivateCrank();
+
+                    // Wait until the crank is reactivated
+                    // or thread is woken up to be killed
+                    crankState.WaitForActivation();
+                    
+                    // If no longer running, kill the thread
+                    if(!crankState.IsRunning()) { return; }
 
                     horizTaps = 0.0f;
                     vertTaps = 0.0f;
@@ -121,10 +144,10 @@ namespace MouseCrank.src.crank
                 }
 
                 if (!willSkipUpdate) {
-                    sensitivity_x = state.GetSensitivityX();
-                    sensitivity_y = state.GetSensitivityY();
-                    curve_x = state.GetCurveX();
-                    curve_y = state.GetCurveY();
+                    sensitivity_x = crankState.GetSensitivityX();
+                    sensitivity_y = crankState.GetSensitivityY();
+                    curve_x = crankState.GetCurveX();
+                    curve_y = crankState.GetCurveY();
 
                     // Determine distance from center in DIPs
                     float x_dist = Math.Clamp(

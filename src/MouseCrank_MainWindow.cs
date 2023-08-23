@@ -62,9 +62,7 @@ namespace MouseCrank.src {
             { "Enter", Keys.Enter },
         };
 
-        private Thread _mouseCrankThread;
-        private CancellationTokenSource _mouseCrankThread_Control;
-        private AutoResetEvent _mouseCrankSleepEvent;
+        private CrankThread _crankThread;
 
         private SBState _sbState;
         private CrankState _crankState;
@@ -107,19 +105,13 @@ namespace MouseCrank.src {
                 if (
                     e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown &&
                     !_togglePressed
-                ) {
+                ) { 
                     if (_crankState.IsCrankActivated()) {
                         _crankState.DeactivateCrank();
-
-                        // Put crank thread to sleep
-                        _mouseCrankSleepEvent.Reset();
 
                         _soundBank.PlayCrankOff();
                     } else {
                         _crankState.ActivateCrank();
-
-                        // Wake up crank thread
-                        _mouseCrankSleepEvent.Set();
 
                         _soundBank.PlayCrankOn();
                     }
@@ -134,23 +126,13 @@ namespace MouseCrank.src {
         }
 
         private void StartCrankThread() {
-            _mouseCrankThread_Control = new();
-            _mouseCrankSleepEvent = new AutoResetEvent(false);
-            _mouseCrankThread = new(
-                () => MouseToKeys.Run(
-                    _mouseCrankThread_Control.Token,
-                    _mouseCrankSleepEvent,
-                    _crankState
-                )
-            );
-            _mouseCrankThread.Start();
+            _crankThread = new CrankThread(_crankState);
+            _crankThread.Start();
         }
 
         private void StopCrankThread() {
-            _mouseCrankThread_Control.Cancel();
-            _mouseCrankSleepEvent.Set(); // wake up crank thread, time to die
-            _mouseCrankThread.Join();
-            _mouseCrankThread_Control.Dispose();
+            _crankThread.Stop();
+            _crankState.Dispose();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e) {
