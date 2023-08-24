@@ -1,7 +1,7 @@
 # MouseCrank for Steel Beasts Pro PE
 <p align="center"><img src="https://raw.githubusercontent.com/musurca/MouseCrank/master/graphics/screenshots/composite_sm.png" /></p>
 
-**DOWNLOAD THE LATEST RELEASE (v0.1.0): [INSTALLER](https://github.com/musurca/MouseCrank/releases/download/v0.1.0_installer/Install_MouseCrank_v0.1.0.exe) | [ZIP](https://github.com/musurca/MouseCrank/releases/download/v0.1.0_zip/MouseCrank_v0.1.0.zip)**
+**DOWNLOAD THE LATEST RELEASE (v0.2.0): [INSTALLER](https://github.com/musurca/MouseCrank/releases/download/v0.2.0_installer/Install_MouseCrank_v0.2.0.exe) | [ZIP](https://github.com/musurca/MouseCrank/releases/download/v0.2.0_zip/MouseCrank_v0.2.0.zip)**
 
 (also requires **[Microsoft .NET Desktop Runtime 7 x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-7.0.10-windows-x64-installer)**)
 
@@ -15,6 +15,8 @@ Do you love driving tanks with hand-cranked turrets, but hate mashing arrow keys
 * Sounds to indicate toggle state
 * Sends keypresses exclusively to the Steel Beasts application
 * DPI-aware
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SX2cyGC4huY?si=3Eywc7CShOCRm3d8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Disclaimer
 
