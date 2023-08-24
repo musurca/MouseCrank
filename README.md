@@ -16,8 +16,6 @@ Do you love driving tanks with hand-cranked turrets, but hate mashing arrow keys
 * Sends keypresses exclusively to the Steel Beasts application
 * DPI-aware
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SX2cyGC4huY?si=3Eywc7CShOCRm3d8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 ## Disclaimer
 
 This software is an unofficial add-on for [Steel Beasts Pro PE](https://www.esimgames.com/) and is not a product of eSim Games. Please do not ask eSim to provide support for MouseCrank.
