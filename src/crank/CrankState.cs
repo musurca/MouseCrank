@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MouseCrank.src.sound;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,26 @@ namespace MouseCrank.src.crank
 {
     internal class CrankState {
         private readonly object _crankLock = new object();
+        
+        // Activation flag
         private bool _crankActivated;
+
+        // Thread control
         private AutoResetEvent _crankSleepEvent;
         private CancellationTokenSource _crankControl;
+
+        // Input calibration settings
         private float _sensitivity_x;
         private float _sensitivity_y;
         private float _curve_x;
         private float _curve_y;
 
-        public CrankState() {
+        // Sounds to play on activation/deactivation
+        SoundBank _soundbank;
+
+        public CrankState(SoundBank soundBank) {
+            _soundbank = soundBank;
+
             _crankActivated = false;
             _crankSleepEvent = new AutoResetEvent(false);
             _crankControl = new CancellationTokenSource();
@@ -55,20 +67,24 @@ namespace MouseCrank.src.crank
         }
 
         public void DeactivateCrank() {
-            if (_crankActivated && IsRunning()) {
-                lock (_crankLock) {
+            lock (_crankLock) {
+                if (_crankActivated && IsRunning()) {
                     _crankActivated = false;
                     _crankSleepEvent.Reset();
                 }
+
+                _soundbank.PlayCrankOff();
             }
         }
 
         public void ActivateCrank() {
-            if (!_crankActivated && IsRunning()) {
-                lock (_crankLock) {
+            lock (_crankLock) {
+                if (!_crankActivated && IsRunning()) {
                     _crankActivated = true;
                     _crankSleepEvent.Set();
                 }
+
+                _soundbank.PlayCrankOn();
             }
         }
 
@@ -89,9 +105,11 @@ namespace MouseCrank.src.crank
         }
 
         public bool IsCrankActivated() {
+            bool crankOn;
             lock (_crankLock) {
-                return _crankActivated;
+                crankOn = _crankActivated;
             }
+            return crankOn;
         }
 
         public void Dispose() {

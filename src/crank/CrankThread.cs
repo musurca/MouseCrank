@@ -90,8 +90,12 @@ namespace MouseCrank.src.crank
 
                 // Put thread to sleep if the crank is deactivated, or
                 // Steel Beasts is not running
-                if (!crankState.IsCrankActivated() || !sbState.Running) {
-                    crankState.DeactivateCrank();
+                bool crankActivated = crankState.IsCrankActivated();
+                if (!crankActivated || !sbState.Running) {
+                    if (crankActivated) {
+                        // Deactivate the crank if it's still activated
+                        crankState.DeactivateCrank();
+                    }
 
                     // Wait until the crank is reactivated
                     // or thread is woken up to be killed
@@ -104,6 +108,9 @@ namespace MouseCrank.src.crank
                     vertTaps = 0.0f;
                     timeToNextTap_Horiz = 0;
                     timeToNextTap_Vert = 0;
+
+                    // Refresh the state of Steel Beasts
+                    SBMonitor.CheckState(sbState);
                 }
 
                 bool willSkipUpdate = false;
@@ -139,15 +146,17 @@ namespace MouseCrank.src.crank
                         }
                     }
                 } else {
-                    // Window not in foreground
-                    willSkipUpdate = true;
+                    // Window not in foreground -- we've alt-tabbed away
+                    // Turn off the crank
+                    crankState.DeactivateCrank();
+                    continue;
                 }
 
                 if (!willSkipUpdate) {
-                    sensitivity_x = crankState.GetSensitivityX();
-                    sensitivity_y = crankState.GetSensitivityY();
-                    curve_x = crankState.GetCurveX();
-                    curve_y = crankState.GetCurveY();
+                    sensitivity_x   = crankState.GetSensitivityX();
+                    sensitivity_y   = crankState.GetSensitivityY();
+                    curve_x         = crankState.GetCurveX();
+                    curve_y         = crankState.GetCurveY();
 
                     // Determine distance from center in DIPs
                     float x_dist = Math.Clamp(

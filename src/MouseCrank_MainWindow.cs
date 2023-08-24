@@ -86,7 +86,7 @@ namespace MouseCrank.src {
             _globalKeyboardHook.KeyboardPressed += OnRawKeyPressed;
 
             // Set the initial state of the UI and thread communication
-            _crankState = new CrankState();
+            _crankState = new CrankState(_soundBank);
             SetInitialState();
 
             // Start the mouse-to-cranks thread
@@ -108,20 +108,18 @@ namespace MouseCrank.src {
                 ) { 
                     if (_crankState.IsCrankActivated()) {
                         _crankState.DeactivateCrank();
-
-                        _soundBank.PlayCrankOff();
                     } else {
                         _crankState.ActivateCrank();
-
-                        _soundBank.PlayCrankOn();
                     }
 
                     _togglePressed = true;
-                } else if (
-                    e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp
-                ) {
-                    _togglePressed = false;
+                    return;
                 }
+            }
+            if (
+                e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp
+            ) {
+                _togglePressed = false;
             }
         }
 
