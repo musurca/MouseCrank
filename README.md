@@ -5,6 +5,8 @@
 
 (also requires **[Microsoft .NET Desktop Runtime 7 x64](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-7.0.10-windows-x64-installer)**)
 
+**[STEEL BEASTS FORUM THEAD](https://www.steelbeasts.com/topic/17215-mousecrank-%E2%80%94-mouse-input-for-hand-cranked-turrets/)**
+
 Do you love driving tanks with hand-cranked turrets, but hate mashing arrow keys? Well, *mash no more*! It's **MouseCrank**, a free utility that generates arrow presses from mouse input to drive manually-traversed turrets.
 
 ## Features
