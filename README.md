@@ -17,7 +17,7 @@ Do you love driving tanks with hand-cranked turrets, but hate mashing arrow keys
 * Sounds to indicate toggle state
 * Sends keys exclusively to the Steel Beasts application — no errant key presses!
 * DPI-aware
-* Free and open source! (https://github.com/musurca/MouseCrank)
+* Free and open source!
 
 ## Disclaimer
 
