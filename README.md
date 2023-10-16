@@ -11,12 +11,13 @@ Do you love driving tanks with hand-cranked turrets, but hate mashing arrow keys
 
 ## Features
 
-* Toggle on and off with a keybind
-* Runs in the background, minimizes to tray, and sleeps when not in use
+* Toggle on and off with a configurable keybind
+* Runs in the background, minimizes to tray, and sleeps when not in use for next-to-zero performance impact
 * User-configurable sensitivity and curve settings, saved between sessions
 * Sounds to indicate toggle state
-* Sends keypresses exclusively to the Steel Beasts application
+* Sends keys exclusively to the Steel Beasts application — no errant key presses!
 * DPI-aware
+* Free and open source! (https://github.com/musurca/MouseCrank)
 
 ## Disclaimer
 
