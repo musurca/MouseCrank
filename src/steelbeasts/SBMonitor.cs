@@ -63,7 +63,7 @@ namespace MouseCrank.src.steelbeasts
         [DllImport("Shcore.dll")]
         private static extern nint GetDpiForMonitor([In] nint hmonitor, [In] DpiType dpiType, [Out] out uint dpiX, [Out] out uint dpiY);
 
-        private static readonly string[] APP_NAMES = { "sbprope64cm", "sbpropeserver64cm" };
+        private static readonly string[] APP_NAMES = { "steelbeasts", "sbprope64cm", "steelbeastsserver", "sbpropeserver64cm" };
         private static WinRect APP_RECT = new WinRect();
         private static Point WND_POINT = new Point(0, 0);
 
@@ -77,7 +77,7 @@ namespace MouseCrank.src.steelbeasts
             WinRect rect = state.Rect;
 
             Process p = null;
-            // Check for both PE & PE Server
+            // Check for all possible versions of SB that could be running
             foreach (string appName in APP_NAMES) {
                 p = Process.GetProcessesByName(appName).FirstOrDefault();
                 if (p != null) {

@@ -6,10 +6,10 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <AssemblyVersion>0.2.1.0</AssemblyVersion>
     <Platforms>x64</Platforms>
     <ApplicationIcon>logo.ico</ApplicationIcon>
-    <Description>Mouse input for hand-cranked turrets in Steel Beasts Pro PE</Description>
+    <Description>Mouse input for hand-cranked turrets in Steel Beasts</Description>
     <PackageIcon>mousecrank-icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/musurca/MouseCrank</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>

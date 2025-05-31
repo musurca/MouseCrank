@@ -1,11 +1,11 @@
 !define LONG_APPNAME "MouseCrank for Steel Beasts"
 !define APPNAME "MouseCrank"
 !define COMPANYNAME "Emigre"
-!define DESCRIPTION "Mouse input for hand-cranked turrets in Steel Beast Pro PE"
+!define DESCRIPTION "Mouse input for hand-cranked turrets in Steel Beasts"
 # These three must be integers
 !define VERSIONMAJOR 0
 !define VERSIONMINOR 2
-!define VERSIONBUILD 0
+!define VERSIONBUILD 1
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 !define HELPURL "https://github.com/musurca/MouseCrank" # "Support Information" link
@@ -54,7 +54,6 @@ section "install"
 	file "MouseCrank.exe"
 	file "logo.ico"
     file "MouseCrank.dll.config"
-    file "MouseCrank.pdb"
 	file "LICENSE.txt"
 	createDirectory "$INSTDIR\sounds"
     file "/oname=sounds\crank_off.wav" sounds\crank_off.wav

@@ -73,7 +73,7 @@ namespace MouseCrank.src.sound
             if (_volume > 0.0) {
                 try {
                     _sndCrankOn?.Play();
-                } catch (Exception e) {
+                } catch (Exception) {
                     // Silently fail
                 }
             }
@@ -83,7 +83,7 @@ namespace MouseCrank.src.sound
             if (_volume > 0.0) {
                 try {
                     _sndCrankOff?.Play();
-                } catch (Exception e) {
+                } catch (Exception) {
                     // Silently fail
                 }
             }

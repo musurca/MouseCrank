@@ -15,7 +15,7 @@ namespace MouseCrank.src
         public About() {
             InitializeComponent();
 
-            labelTitle.Text = "MouseCrank " + Program.GetVersion() + "\nfor Steel Beasts Pro PE";
+            labelTitle.Text = "MouseCrank " + Program.GetVersion() + "\nfor Steel Beasts";
         }
 
         private void btnOK_Click(object sender, EventArgs e) {

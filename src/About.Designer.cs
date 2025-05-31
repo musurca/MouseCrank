@@ -34,11 +34,11 @@
             // labelTitle
             // 
             labelTitle.AutoSize = true;
-            labelTitle.Location = new Point(59, 9);
+            labelTitle.Location = new Point(76, 9);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(123, 30);
+            labelTitle.Size = new Size(98, 30);
             labelTitle.TabIndex = 0;
-            labelTitle.Text = "MouseCrank v0.1\nfor Steel Beasts Pro PE";
+            labelTitle.Text = "MouseCrank v0.1\nfor Steel Beasts";
             labelTitle.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnOK
@@ -66,10 +66,10 @@
             label6.AutoSize = true;
             label6.Location = new Point(16, 164);
             label6.Name = "label6";
-            label6.Size = new Size(217, 75);
+            label6.Size = new Size(216, 75);
             label6.TabIndex = 6;
-            label6.Text = "DISCLAIMER:\r\nThis software is an unofficial add-on for\r\nSteel Beasts Pro PE and is not a product \r\nof eSim Games. Please do not ask eSim\r\nto provide support for MouseCrank.";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
+            label6.Text = "DISCLAIMER:\r\nThis software is an unofficial add-on for\r\nSteel Beasts and is not a product \r\nof eSim Games. Please do not ask eSim\r\nto provide support for MouseCrank.";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -95,7 +95,7 @@
             AcceptButton = btnOK;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(248, 288);
+            ClientSize = new Size(243, 283);
             ControlBox = false;
             Controls.Add(linkLabel1);
             Controls.Add(label2);
